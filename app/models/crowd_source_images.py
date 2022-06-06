@@ -21,12 +21,13 @@ class CrowdSource:
         f = open(os.path.join(folder, filename), "w")
         json.dump(payload, f)
 
-    def fetch_metadata(self, folder):
+    def fetch_metadata(self, folder, image):
         metadata = []
         for path in os.listdir(folder):
             filepath = os.path.join(folder, path)
             if os.path.isfile(filepath) and "gitignore" not in filepath:
                 data = json.load(open(filepath, 'r', encoding="utf8"))
+                data['imageFile'] = os.path.join(image, data['imageFile'])
                 metadata.append(data)
         return metadata
 
