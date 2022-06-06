@@ -7,4 +7,3 @@ requests
 Werkzeug
 gunicorn
 beautifulsoup4
-PIL
