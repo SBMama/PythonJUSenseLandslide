@@ -1,8 +1,5 @@
 Flask
 Flask-Cors
-html5lib
-Pillow
-pygooglenews
 requests
 Werkzeug
 gunicorn
