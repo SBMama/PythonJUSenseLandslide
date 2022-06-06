@@ -27,7 +27,7 @@ class CrowdSource:
             filepath = os.path.join(folder, path)
             if os.path.isfile(filepath) and "gitignore" not in filepath:
                 data = json.load(open(filepath, 'r', encoding="utf8"))
-            metadata.append(data)
+                metadata.append(data)
         return metadata
 
 if __name__ == '__main__':
