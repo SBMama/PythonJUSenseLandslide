@@ -30,7 +30,7 @@ def get_tweets():
 
 @app.route('/v1/get_news', methods=['GET'])
 def get_news():
-    folder = os.path.join("..","data","articles")
+    folder = "./app/data/articles"
     params = request.args.to_dict()
     news_obj = ProcessArticles(folder)
     result = news_obj.process_articles()
@@ -41,8 +41,8 @@ def get_news():
 
 @app.route('/v1/image_upload', methods=['POST'])
 def upload_image():
-    image_folder = os.path.join("..","data","images_uploaded")
-    data_folder = os.path.join("..","data","crowd_source_data")
+    image_folder = "./app/data/images_uploaded"
+    data_folder = "./app/data/crowd_source_data"
     payload = request.form.to_dict()
     file = request.files
     obj = CrowdSource()
