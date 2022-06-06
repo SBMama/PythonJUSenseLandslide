@@ -64,7 +64,7 @@ def fetch_image():
     image_folder = "./app/data/images_uploaded"
     data_folder = "./app/data/crowd_source_data"
     obj = CrowdSource()
-    result = obj.fetch_metadata(image_folder)
+    result = obj.fetch_metadata(data_folder)
     #obj.save_metadata(payload, file, data_folder)
     response = make_response(json.dumps(result), http.HTTPStatus.OK)
     response.headers = {'Content-Type': 'application/json'}
