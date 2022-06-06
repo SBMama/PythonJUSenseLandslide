@@ -15,7 +15,7 @@ CORS(app)
 
 @app.route('/v1/get_tweets', methods=['GET'])
 def get_tweets():
-    filename = os.path.abspath(os.path.join("..","data","tweets.json"))
+    filename = os.path.abspath("../data/tweets.json")
     params = request.args.to_dict()
     tweet_obj = ProcessTweet(filename)
     result = tweet_obj.map_tweets_from_json()
