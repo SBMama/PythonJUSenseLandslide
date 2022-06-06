@@ -25,7 +25,7 @@ class CrowdSource:
         metadata = []
         for path in os.listdir(folder):
             filepath = os.path.join(folder, path)
-            if os.path.isfile(filepath):
+            if os.path.isfile(filepath) and "gitignore" not in filepath:
                 data = json.load(open(filepath, 'r', encoding="utf8"))
             metadata.append(data)
         return metadata
