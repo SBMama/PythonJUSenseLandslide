@@ -6,4 +6,3 @@ pygooglenews
 requests
 Werkzeug
 gunicorn
-beautifulsoup4
