@@ -20,3 +20,16 @@ class CrowdSource:
         filename = "metadata_"+imageFile+".json"
         f = open(os.path.join(folder, filename), "w")
         json.dump(payload, f)
+
+    def fetch_metadata(self, folder):
+        metadata = []
+        for path in os.listdir(folder):
+            filepath = os.path.join(folder, path)
+            if os.path.isfile(filepath):
+                data = json.load(open(filepath, 'r', encoding="utf8"))
+            metadata.append(data)
+        return metadata
+
+if __name__ == '__main__':
+    obj = CrowdSource()
+    print(obj.fetch_metadata("C:\\Users\\HP\\PycharmProjects\\PythonJUSenseLandslide\\app\\data\\crowd_source_data"))

@@ -41,16 +41,31 @@ def get_news():
 
 @app.route('/v1/image_upload', methods=['POST'])
 def upload_image():
+    try:
+        image_folder = "./app/data/images_uploaded"
+        data_folder = "./app/data/crowd_source_data"
+        payload = request.form.to_dict()
+        file = request.files
+        obj = CrowdSource()
+        obj.save_image(file, image_folder)
+        obj.save_metadata(payload, file, data_folder)
+        result = {"Status": "Uploaded Successfully"}
+        response = make_response(json.dumps(result), http.HTTPStatus.OK)
+        response.headers = {'Content-Type': 'application/json'}
+        return response
+    except Exception as e:
+        result = {"Status": "Uploaded Failed"}
+        response = make_response(json.dumps(result), http.HTTPStatus.OK)
+        response.headers = {'Content-Type': 'application/json'}
+        return response
+
+@app.route('/v1/fetch_metadata', methods=['GET'])
+def fetch_image():
     image_folder = "./app/data/images_uploaded"
     data_folder = "./app/data/crowd_source_data"
-    payload = request.form.to_dict()
-    file = request.files
     obj = CrowdSource()
-    obj.save_image(file, image_folder)
-    obj.save_metadata(payload, file, data_folder)
-    result = {"Status": "Ok"}
+    result = obj.fetch_metadata(image_folder)
+    #obj.save_metadata(payload, file, data_folder)
     response = make_response(json.dumps(result), http.HTTPStatus.OK)
     response.headers = {'Content-Type': 'application/json'}
     return response
-
-
