@@ -1,5 +1,7 @@
 import http
 import json
+import os
+
 from flask import Flask, make_response, request
 from flask_cors import CORS
 
@@ -13,7 +15,7 @@ CORS(app)
 
 @app.route('/v1/get_tweets', methods=['GET'])
 def get_tweets():
-    filename = "..\\data\\tweets.json"
+    filename = os.path.join("..","data","tweets.json")
     params = request.args.to_dict()
     tweet_obj = ProcessTweet(filename)
     result = tweet_obj.map_tweets_from_json()
@@ -28,7 +30,7 @@ def get_tweets():
 
 @app.route('/v1/get_news', methods=['GET'])
 def get_news():
-    folder = "..\\data\\articles"
+    folder = os.path.join("..","data","articles")
     params = request.args.to_dict()
     news_obj = ProcessArticles(folder)
     result = news_obj.process_articles()
@@ -39,8 +41,8 @@ def get_news():
 
 @app.route('/v1/image_upload', methods=['POST'])
 def upload_image():
-    image_folder = "..\\data\\images_uploaded"
-    data_folder = "..\\data\\crowd_source_data"
+    image_folder = os.path.join("..","data","images_uploaded")
+    data_folder = os.path.join("..","data","crowd_source_data")
     payload = request.form.to_dict()
     file = request.files
     obj = CrowdSource()
