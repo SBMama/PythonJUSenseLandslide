@@ -1,3 +1,4 @@
+import json
 import os
 
 import boto3
@@ -26,7 +27,7 @@ class BotoCRUD:
 
     def save_metadata_file(self, data, request, filename):
         content_type = request.mimetype
-        self.s3.put_object(Body=data, Bucket=self.bucket, Key=filename, ContentType=content_type)
+        self.s3.put_object(Body=json.dumps(data), Bucket=self.bucket, Key=filename, ContentType=content_type)
 
 
 if __name__ == '__main__':
