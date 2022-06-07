@@ -63,7 +63,7 @@ def upload_image():
 def fetch_image():
     obj = CrowdSource()
     data, images = obj.fetch_metadata()
-    result = {"data": data, "images": images}
+    result = {"data": data}
     response = make_response(json.dumps(result), http.HTTPStatus.OK)
     response.headers = {'Content-Type': 'application/json'}
     return response

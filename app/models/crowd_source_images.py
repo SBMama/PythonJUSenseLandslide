@@ -27,4 +27,4 @@ class CrowdSource:
 
     def fetch_metadata(self):
         metadata, images = self.boto_obj.fetch_metadata()
-        return metadata, images
+        return metadata
