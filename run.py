@@ -84,7 +84,7 @@ def classify_image():
         response.headers = {'Content-Type': 'application/json'}
         return response
     except Exception as e:
-        result = {"Status": "Classification Failed"}
-        response = make_response(json.dumps(result), http.HTTPStatus.OK)
+        result = {"Status": f"Classification Failed {str(e)}"}
+        response = make_response(json.dumps(result), http.HTTPStatus.INTERNAL_SERVER_ERROR)
         response.headers = {'Content-Type': 'application/json'}
         return response
