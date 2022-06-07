@@ -3,5 +3,5 @@ Flask-Cors
 requests
 Werkzeug
 gunicorn
-opencv-python==4.5.5.64
+opencv-python-headless
 keras
