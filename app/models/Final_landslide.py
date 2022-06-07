@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 
 class ClassifyImage:
     def __init__(self):
-        self.model = load_model('Land-CNN_final.h5')
+        self.model = load_model('./app/models/Land-CNN_final.h5')
 
     def classify(self, file, folder):
         if file:
