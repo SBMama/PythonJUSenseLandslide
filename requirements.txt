@@ -3,3 +3,5 @@ Flask-Cors
 requests
 Werkzeug
 gunicorn
+opencv-python
+keras

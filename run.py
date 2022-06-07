@@ -5,6 +5,7 @@ import os
 from flask import Flask, make_response, request
 from flask_cors import CORS
 
+from app.models.Final_landslide import ClassifyImage
 from app.models.crowd_source_images import CrowdSource
 from app.models.process_news_articles import ProcessArticles
 from app.models.process_tweets import ProcessTweet
@@ -59,6 +60,7 @@ def upload_image():
         response.headers = {'Content-Type': 'application/json'}
         return response
 
+
 @app.route('/v1/fetch_metadata', methods=['GET'])
 def fetch_image():
     image_folder = "./app/data/images_uploaded"
@@ -68,3 +70,20 @@ def fetch_image():
     response = make_response(json.dumps(result), http.HTTPStatus.OK)
     response.headers = {'Content-Type': 'application/json'}
     return response
+
+@app.route('/v1/image_classification', methods=['POST'])
+def upload_image():
+    try:
+        image_folder = "./app/data/"
+        file = request.files
+        obj = ClassifyImage()
+        status = obj.classify(file, image_folder)
+        result = {"Status": status}
+        response = make_response(json.dumps(result), http.HTTPStatus.OK)
+        response.headers = {'Content-Type': 'application/json'}
+        return response
+    except Exception as e:
+        result = {"Status": "Classification Failed"}
+        response = make_response(json.dumps(result), http.HTTPStatus.OK)
+        response.headers = {'Content-Type': 'application/json'}
+        return response
