@@ -61,10 +61,8 @@ def upload_image():
 
 @app.route('/v1/fetch_metadata', methods=['GET'])
 def fetch_image():
-    image_folder = "./app/data/images_uploaded"
-    data_folder = "./app/data/crowd_source_data"
     obj = CrowdSource()
-    result = obj.fetch_metadata(data_folder, image_folder)
+    result = obj.fetch_metadata()
     response = make_response(json.dumps(result), http.HTTPStatus.OK)
     response.headers = {'Content-Type': 'application/json'}
     return response

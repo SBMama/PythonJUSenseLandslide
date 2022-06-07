@@ -25,12 +25,6 @@ class CrowdSource:
         mfilename = "metadata_"+filename.split(".")[0]+".json"
         self.boto_obj.save_metadata_file(payload, request, mfilename)
 
-    def fetch_metadata(self, folder, image):
-        metadata = []
-        for path in os.listdir(folder):
-            filepath = os.path.join(folder, path)
-            if os.path.isfile(filepath) and "gitignore" not in filepath:
-                data = json.load(open(filepath, 'r', encoding="utf8"))
-                data['imageFile'] = os.path.join(image, data['imageFile'])
-                metadata.append(data)
+    def fetch_metadata(self):
+        metadata, images = self.boto_obj.fetch_metadata()
         return metadata
