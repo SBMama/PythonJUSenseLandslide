@@ -5,4 +5,4 @@ Werkzeug
 gunicorn
 opencv-python-headless
 keras
-tensorflow
+tensorflow-cpu
