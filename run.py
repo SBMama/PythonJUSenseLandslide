@@ -71,8 +71,9 @@ def fetch_image():
     response.headers = {'Content-Type': 'application/json'}
     return response
 
+
 @app.route('/v1/image_classification', methods=['POST'])
-def upload_image():
+def classify_image():
     try:
         image_folder = "./app/data/"
         file = request.files
