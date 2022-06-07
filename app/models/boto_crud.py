@@ -7,7 +7,10 @@ import uuid
 
 class BotoCRUD:
     def __init__(self):
-        self.s3 = boto3.client('s3')
+        self.s3 = boto3.client('s3',
+                               aws_access_key_id='AKIATBRTRCP7ZE4ZJB6Q',
+                               aws_secret_access_key='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',
+                               region_name='us-east-1')
         self.bucket = 'jusense-landslide'
 
     def list_s3_buckets(self):
