@@ -43,13 +43,11 @@ def get_news():
 @app.route('/v1/image_upload', methods=['POST'])
 def upload_image():
     try:
-        image_folder = "./app/data/images_uploaded"
-        data_folder = "./app/data/crowd_source_data"
         payload = request.form.to_dict()
         file = request.files
         obj = CrowdSource()
-        obj.save_image(file, image_folder)
-        obj.save_metadata(payload, file, data_folder)
+        imagefile = obj.save_image(file, request)
+        obj.save_metadata(payload, imagefile, request)
         result = {"Status": "Uploaded Successfully"}
         response = make_response(json.dumps(result), http.HTTPStatus.OK)
         response.headers = {'Content-Type': 'application/json'}

@@ -6,3 +6,4 @@ gunicorn
 opencv-python-headless
 keras
 tensorflow-cpu
+boto3
