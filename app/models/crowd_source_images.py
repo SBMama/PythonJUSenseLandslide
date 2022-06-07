@@ -30,7 +30,3 @@ class CrowdSource:
                 data['imageFile'] = os.path.join(image, data['imageFile'])
                 metadata.append(data)
         return metadata
-
-if __name__ == '__main__':
-    obj = CrowdSource()
-    print(obj.fetch_metadata("C:\\Users\\HP\\PycharmProjects\\PythonJUSenseLandslide\\app\\data\\crowd_source_data"))

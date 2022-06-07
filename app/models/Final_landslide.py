@@ -19,7 +19,8 @@ class ClassifyImage:
             X_12 = X_12 / 255.0
             pred = self.model.predict(X_12)
             if pred < 0.5:
-                return "This is a Landslide"
+                return "This is a Landslide. " \
+                       "Consider reporting it through our Crowd Reporting Section."
             else:
                 return "This is not a Landslide"
         else:
