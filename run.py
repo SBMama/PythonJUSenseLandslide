@@ -53,8 +53,8 @@ def upload_image():
         response.headers = {'Content-Type': 'application/json'}
         return response
     except Exception as e:
-        result = {"Status": "Uploaded Failed"}
-        response = make_response(json.dumps(result), http.HTTPStatus.OK)
+        result = {"Status": f"Uploaded Failed {str(e)}"}
+        response = make_response(json.dumps(result), http.HTTPStatus.INTERNAL_SERVER_ERROR)
         response.headers = {'Content-Type': 'application/json'}
         return response
 
