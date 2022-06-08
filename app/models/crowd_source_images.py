@@ -29,4 +29,7 @@ class CrowdSource:
 
     def fetch_metadata(self):
         metadata, images = self.boto_obj.fetch_metadata()
+        for data in metadata:
+            if 'source' not in data:
+                data['source'] = ""
         return metadata
