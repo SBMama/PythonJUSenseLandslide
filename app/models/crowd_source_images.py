@@ -1,5 +1,6 @@
 import json
 import os
+import uuid
 
 from werkzeug.utils import secure_filename
 
@@ -22,7 +23,8 @@ class CrowdSource:
 
     def save_metadata(self, payload, filename, request):
         payload['imageFile'] = filename
-        mfilename = "metadata_"+filename.split(".")[0]+".json"
+        id = str(uuid.uuid4())
+        mfilename = "metadata_"+id+".json"
         self.boto_obj.save_metadata_file(payload, request, mfilename)
 
     def fetch_metadata(self):
