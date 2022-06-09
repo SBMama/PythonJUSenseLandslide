@@ -2,20 +2,22 @@ import json
 import os
 
 import boto3
-from werkzeug.utils import secure_filename
+import os
 import uuid
 
 
 class BotoCRUD:
     def __init__(self):
+        key = os.environ.get('aws_access_key_id', None)
+        secret = os.environ.get('aws_secret_access_key', None)
         self.s3 = boto3.client('s3',
-                               aws_access_key_id='AKIATBRTRCP7ZE4ZJB6Q',
-                               aws_secret_access_key='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',
+                               aws_access_key_id=key,
+                               aws_secret_access_key=secret,
                                region_name='us-east-1')
         self.bucket = 'jusense-landslide'
         self.session = boto3.Session(
-                aws_access_key_id='AKIATBRTRCP7ZE4ZJB6Q',
-                aws_secret_access_key='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')
+                aws_access_key_id=key,
+                aws_secret_access_key=secret)
 
     def list_s3_buckets(self):
         response = self.s3.list_buckets()
